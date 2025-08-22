@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sowmiya S | Portfolio</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-YH1aJcI3t7Q7Uqf0M9r7m7zQm7vE5Hqv3jDgWw0+oK4G8t9o0V3v0l9QKc8tYhI8UuZc4q8b2GJc9k1v4n7m7w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --card: #121621;
+      --muted: #a7b0c0;
+      --text: #e7ecf3;
+      --brand: #7c5cff;
+      --brand-2: #00d4ff;
+      --ring: rgba(124,92,255,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --maxw: 1200px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 100% -10%, rgba(124,92,255,.16), transparent 60%),
+                  radial-gradient(1000px 600px at -10% 10%, rgba(0,212,255,.12), transparent 50%),
+                  var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:rgba(11,13,18,.6);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      height:68px;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+    .brand .logo{
+      width:36px;height:36px;border-radius:12px;
+      background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      display:grid;place-items:center;color:white;font-weight:900;
+      box-shadow:0 8px 18px var(--ring);
+    }
+    nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+    nav a{padding:10px 12px;border-radius:12px;color:var(--muted)}
+    nav a:hover, nav a.active{color:var(--text);background:rgba(255,255,255,.06)}
+    .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:22px}
+
+    @media (max-width: 860px){
+      nav ul{display:none;position:absolute;left:20px;right:20px;top:72px;
+        background:rgba(18,22,33,.98);border:1px solid rgba(255,255,255,.08);
+        border-radius:16px;padding:12px;flex-direction:column;box-shadow:var(--shadow)}
+      nav ul.open{display:flex}
+      .menu-btn{display:block}
+    }
+
+    /* Hero */
+    .hero{padding:80px 0 40px}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center}
+    .headline{font-size:clamp(28px, 4vw, 44px);line-height:1.15;margin:0 0 10px;font-weight:800}
+    .sub{color:var(--muted);font-size:clamp(14px, 1.6vw, 18px)}
+    .cta{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .btn{border:1px solid rgba(255,255,255,.12);padding:12px 16px;border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      display:inline-flex;gap:10px;align-items:center;font-weight:600}
+    .btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0d12}
+    .stat{
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px
+    }
+    .stat .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;padding:16px;text-align:center}
+    .stat .num{font-size:22px;font-weight:800}
+    .portrait{
+      width:min(340px,80%);aspect-ratio:1/1.1;margin:0 auto;border-radius:28px;overflow:hidden;position:relative;
+      border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    }
+    .portrait img{object-fit:cover;height:100%;filter:grayscale(.1)}
+    .badge{position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);
+      border:1px solid rgba(255,255,255,.16);padding:8px 12px;border-radius:999px;font-size:12px}
+
+    @media (max-width: 860px){
+      .hero{padding:64px 0 24px}
+      .hero-grid{grid-template-columns:1fr}
+    }
+
+    /* Sections */
+    section{padding:56px 0}
+    .section-card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+    .section-title{font-size:24px;margin:0 0 18px}
+
+    /* About */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .about-grid p{color:var(--muted);margin:0}
+    @media (max-width: 860px){.about-grid{grid-template-columns:1fr}}
+
+    /* Skills */
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.03);font-weight:600}
+    .skillbar{background:rgba(255,255,255,.06);border-radius:12px;overflow:hidden;height:10px}
+    .skillbar > span{display:block;height:100%;background:linear-gradient(135deg,var(--brand),var(--brand-2))}
+
+    /* Cards Grids */
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    @media (max-width: 1024px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width: 640px){.grid{grid-template-columns:1fr}}
+
+    .item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:16px;border-radius:16px}
+    .item .meta{color:var(--muted);font-size:14px}
+
+    /* Contact */
+    form{display:grid;gap:12px}
+    input, textarea{width:100%;padding:12px 14px;border-radius:12px;color:var(--text);
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12)}
+    textarea{min-height:120px;resize:vertical}
+    input:focus, textarea:focus{outline:2px solid var(--ring);border-color:transparent}
+
+    /* Footer */
+    footer{padding:28px 0;color:var(--muted);text-align:center}
+
+    /* Reveal animations */
+    .reveal{opacity:0;transform:translateY(16px);transition:.6s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* Back to top */
+    #toTop{position:fixed;right:18px;bottom:18px;border:none;border-radius:999px;padding:12px 14px;font-size:18px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0d12;display:none;box-shadow:var(--shadow)}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">S</div>
+        <a href="#home" aria-label="Go to home"><span>Sowmiya S</span></a>
+      </div>
+      <button class="menu-btn" aria-label="Open navigation" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+      <nav>
+        <ul id="navList">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#certificates">Certificate</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#extra">Extra Ordinary Skills</a></li>
+          <li><a href="#conference">Conference</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero container">
+    <div class="hero-grid">
+      <div>
+        <h1 class="headline">Hi, I'm <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">Sowmiya S</span></h1>
+        <p class="sub">Aspiring developer and lifelong learner. I build clean, accessible, and responsive interfaces with a focus on performance and delightful details.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact Me</a>
+          <a class="btn" href="#skills"><i class="fa-solid fa-bolt"></i> Explore Skills</a>
+        </div>
+        <div class="stat">
+          <div class="card reveal"><div class="num">3+</div><div class="meta">Projects</div></div>
+          <div class="card reveal"><div class="num">5</div><div class="meta">Certificates</div></div>
+          <div class="card reveal"><div class="num">2</div><div class="meta">Conferences</div></div>
+        </div>
+      </div>
+      <div class="portrait reveal" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop" alt="Portrait placeholder" />
+        <span class="badge"><i class="fa-solid fa-code"></i> Front‑End Enthusiast</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container section-card reveal">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <p>
+          I'm Sowmiya S, passionate about building user‑friendly web experiences. I enjoy turning ideas into products, learning new tools, and collaborating with teams.
+        </p>
+        <p>
+          When I'm not coding, I explore design systems and micro‑animations. I'm currently seeking opportunities to contribute to impactful projects.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section id="certificates">
+    <div class="container section-card reveal">
+      <h2 class="section-title">Certificates</h2>
+      <div class="grid">
+        <div class="item">
+          <strong>Responsive Web Design</strong>
+          <div class="meta">freeCodeCamp · 2024</div>
+          <p>Built accessible layouts with modern CSS.</p>
+        </div>
+        <div class="item">
+          <strong>JavaScript Algorithms</strong>
+          <div class="meta">Coursera · 2024</div>
+          <p>Data structures, algorithms, ES6+ patterns.</p>
+        </div>
+        <div class="item">
+          <strong>Version Control with Git</strong>
+          <div class="meta">Udacity · 2023</div>
+          <p>Branching workflows and collaboration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container section-card reveal">
+      <h2 class="section-title">Skills</h2>
+      <div class="chips" aria-label="Skill tags">
+        <span class="chip">HTML5</span>
+        <span class="chip">CSS3</span>
+        <span class="chip">JavaScript (ES6+)</span>
+        <span class="chip">Responsive Design</span>
+        <span class="chip">Accessibility (a11y)</span>
+        <span class="chip">Git & GitHub</span>
+        <span class="chip">Figma</span>
+      </div>
+      <div style="height:12px"></div>
+      <div class="grid">
+        <div class="item">
+          <div style="display:flex;justify-content:space-between"><strong>HTML</strong><span class="meta">90%</span></div>
+          <div class="skillbar" aria-hidden="true"><span style="width:90%"></span></div>
+        </div>
+        <div class="item">
+          <div style="display:flex;justify-content:space-between"><strong>CSS</strong><span class="meta">85%</span></div>
+          <div class="skillbar"><span style="width:85%"></span></div>
+        </div>
+        <div class="item">
+          <div style="display:flex;justify-content:space-between"><strong>JavaScript</strong><span class="meta">75%</span></div>
+          <div class="skillbar"><span style="width:75%"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extra Ordinary Skills -->
+  <section id="extra">
+    <div class="container section-card reveal">
+      <h2 class="section-title">Extra Ordinary Skills</h2>
+      <div class="grid">
+        <div class="item">
+          <strong>Public Speaking</strong>
+          <p>Comfortable presenting technical topics to diverse audiences.</p>
+        </div>
+        <div class="item">
+          <strong>Team Leadership</strong>
+          <p>Led small teams, sprint planning, and code reviews.</p>
+        </div>
+        <div class="item">
+          <strong>Design Thinking</strong>
+          <p>Rapid prototyping and user‑centered iteration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conference -->
+  <section id="conference">
+    <div class="container section-card reveal">
+      <h2 class="section-title">Conference</h2>
+      <div class="grid">
+        <div class="item">
+          <strong>Web.dev Summit 2024</strong>
+          <div class="meta">Speaker · "Accessible UI Patterns"</div>
+          <p>Shared best practices for keyboard‑first experiences.</p>
+        </div>
+        <div class="item">
+          <strong>JS Nation 2023</strong>
+          <div class="meta">Attendee</div>
+          <p>Explored modern tooling, performance budgets, and DX.</p>
+        </div>
+        <div class="item">
+          <strong>Local DevFest</strong>
+          <div class="meta">Volunteer</div>
+          <p>Helped coordinate workshops and mentorship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container section-card reveal">
+      <h2 class="section-title">Contact</h2>
+      <div class="about-grid">
+        <form id="contactForm" novalidate>
+          <div>
+            <label for="name" class="meta">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div>
+            <label for="email" class="meta">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="message" class="meta">Message</label>
+            <textarea id="message" name="message" placeholder="I'd love to connect about..."></textarea>
+          </div>
+          <button type="submit" class="btn primary" style="width:max-content"><i class="fa-solid fa-paper-plane"></i> Send</button>
+          <p id="formStatus" class="meta" role="status" aria-live="polite"></p>
+        </form>
+        <div>
+          <div class="item">
+            <strong>Email</strong>
+            <p class="meta">sowmiya@example.com</p>
+          </div>
+          <div class="item">
+            <strong>Location</strong>
+            <p class="meta">Chennai, IN</p>
+          </div>
+          <div class="item">
+            <strong>Social</strong>
+            <p class="meta">
+              <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i> GitHub</a> ·
+              <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a> ·
+              <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i> X</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Sowmiya S · Built with HTML · CSS · JS
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navList = document.getElementById('navList');
+    menuBtn.addEventListener('click', () => navList.classList.toggle('open'));
+
+    // Close menu on link click (mobile)
+    navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+
+    // Active link on scroll
+    const sections = document.querySelectorAll('main[id], section[id]');
+    const links = document.querySelectorAll('nav a');
+    const setActive = () => {
+      let cur = null;
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom >= 120) cur = '#' + sec.id;
+      });
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === cur));
+    };
+    window.addEventListener('scroll', setActive);
+    window.addEventListener('load', setActive);
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+    }, {threshold: 0.15});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Back to top button
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      toTop.style.display = window.scrollY > 400 ? 'inline-flex' : 'none';
+    });
+    toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Contact form (frontend-only demo)
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = data.get('name').trim();
+      const email = data.get('email').trim();
+      if(!name || !email){
+        status.textContent = 'Please fill in the required fields.';
+        return;
+      }
+      status.textContent = 'Thanks, ' + name + '! Your message has been prepared (demo).';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
